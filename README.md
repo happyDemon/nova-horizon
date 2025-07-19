@@ -8,7 +8,7 @@ Add statistics to your Nova dashboard for 1 or more applications that are runnin
 
 This is a fork of [appstract/nova-horizon](https://github.com/appstract/nova-horizon), some key differences:
 - You can configure multiple horizon instances
-- Data auto-refresher get destroyed when the components get unmounted
+- Improved request handling
 
 ![dashboard](docs/dashboard.png)
 

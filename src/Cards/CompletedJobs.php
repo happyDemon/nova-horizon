@@ -1,6 +1,6 @@
 <?php
 
-namespace Appstract\NovaHorizon\Cards;
+namespace HappyDemon\NovaHorizon\Cards;
 
 class CompletedJobs extends Card
 {

@@ -1,7 +1,7 @@
 <template>
     <card class="nova-horizon">
         <div class="px-6 py-6" :class="darkModeClass()">
-            <h3 class="mb-3 text-sm font-bold">Status</h3>
+            <h3 class="mb-3 text-sm font-bold"><span v-if="$attrs.card.horizon && $attrs.card.horizon.name">{{$attrs.card.horizon.name}} -</span> Status</h3>
 
             <div class="flex items-center">
                 <svg v-if="stats.status == 'running'" class="fill-green-500" viewBox="0 0 20 20" style="width: 1.7rem; height: 1.7rem;">

@@ -1,4 +1,5 @@
 import phpunserialize from 'phpunserialize';
+import {prepareHorizonPostRequest, prepareHorizonRequest} from "../helpers";
 
 export default {
     /**
@@ -135,5 +136,13 @@ export default {
         readableTimestamp(timestamp) {
             return this.formatDate(timestamp).format('YYYY-MM-DD HH:mm:ss');
         },
+
+        getHorizonRequest(endpoint, options = {}) {
+            return prepareHorizonRequest(this.$attrs.card.horizon, endpoint, options);
+        },
+
+        postHorizonRequest(endpoint, options = {}) {
+            return prepareHorizonPostRequest(this.$attrs.card.horizon, endpoint, options);
+        }
     },
 }

@@ -2,7 +2,7 @@
     <card class="nova-horizon flex flex-col">
         <div :class="darkModeClass()">
             <nova-horizon-card-header class="p-3">
-                Pending Jobs
+                <span v-if="$attrs.card.horizon && $attrs.card.horizon.name">{{$attrs.card.horizon.name}} -</span> Pending Jobs
             </nova-horizon-card-header>
 
             <nova-horizon-loading v-if="! ready"></nova-horizon-loading>
@@ -100,7 +100,7 @@ export default {
                 this.ready = false;
             }
 
-            Nova.request().get(config.novaHorizon.basePath + '/api/jobs/pending?starting_at=' + starting + '&limit=' + this.perPage)
+            this.getHorizonRequest('api/jobs/pending?starting_at=' + starting + '&limit=' + this.perPage)
                 .then(response => {
                     if (
                         refreshing &&

@@ -2,7 +2,7 @@
     <card class="nova-horizon">
         <div :class="darkModeClass()">
             <nova-horizon-card-header class="flex justify-between">
-                <h5 class="p-3">Failed Jobs</h5>
+                <h5 class="p-3"><span v-if="$attrs.card.horizon && $attrs.card.horizon.name">{{$attrs.card.horizon.name}} -</span> Failed Jobs</h5>
                 <input
                     type="text"
                     v-model="searchQuery"
@@ -124,7 +124,7 @@ export default {
 
             var tagQuery = this.searchQuery ? 'tag=' + this.searchQuery + '&' : '';
 
-            Nova.request().get(config.novaHorizon.basePath + '/api/jobs/failed?' + tagQuery + 'starting_at=' + starting)
+            this.getHorizonRequest('api/jobs/failed?'+tagQuery+'starting_at=' + starting)
                 .then(response => {
                     if (! this.$root.autoLoadsNewEntries && refreshing && ! response.data.jobs.length) {
                         return;
@@ -172,7 +172,7 @@ export default {
 
             this.retryingJobs.push(id);
 
-            Nova.request().post(config.novaHorizon.basePath + '/api/jobs/retry/' + id)
+            this.postHorizonRequest( 'api/jobs/retry/' + id)
                 .then((response) => {
                     setTimeout(() => {
                         this.retryingJobs = reject(this.retryingJobs, job => job == id);

@@ -1,5 +1,5 @@
 {
-    "name": "appstract/nova-horizon",
+    "name": "happydemon/nova-horizon",
     "description": "Horizon statistics in Nova",
     "keywords": [
         "laravel",
@@ -8,17 +8,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
-        "laravel/horizon": "^5.0"
+        "laravel/horizon": "^4.0|^5.0"
     },
     "autoload": {
         "psr-4": {
-            "Appstract\\NovaHorizon\\": "src/"
+            "HappyDemon\\NovaHorizon\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Appstract\\NovaHorizon\\NovaHorizonServiceProvider"
+                "HappyDemon\\NovaHorizon\\NovaHorizonServiceProvider"
             ]
         }
     },

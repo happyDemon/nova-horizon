@@ -1,3 +1,4 @@
+import {prepareHorizonRequest} from '../helpers'
 export default {
     methods: {
         /**
@@ -17,5 +18,9 @@ export default {
 
             return (activeDarkMode ||  prefersDarkMode) ? 'dark' : '';
         },
+
+        getHorizonRequest(endpoint, options = {}) {
+            return prepareHorizonRequest(this.$attrs.card.horizon, endpoint, options);
+        }
     },
 }

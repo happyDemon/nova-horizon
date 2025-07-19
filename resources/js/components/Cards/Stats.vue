@@ -4,7 +4,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-4 md:grid-rows-2">
                 <div class="align-top p-6">
                     <h3 class="text-sm font-bold mb-3">
-                        Jobs
+                        <span v-if="$attrs.card.horizon && $attrs.card.horizon.name">{{$attrs.card.horizon.name}} -</span> Jobs
                     </h3>
 
                     <p class="text-4xl mb-3">

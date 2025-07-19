@@ -45,8 +45,7 @@ export default {
     data() {
         return {
             ready: false,
-            workload: [],
-            timeout: null
+            workload: []
         }
     },
 
@@ -58,7 +57,7 @@ export default {
     },
 
     beforeUnmount () {
-        if (this.timeout) {
+        if (this.timeout !== null) {
             clearTimeout(this.timeout);
             this.timeout = null;
         }
@@ -71,11 +70,9 @@ export default {
         async fetchWorkload() {
             try {
                 const response = await this.getHorizonRequest('api/workload');
-
-                console.log(response.data);
                 return response.data;
             } catch (error) {
-                console.log('error: ', error);
+                Nova.error('request error when loading current workload: horizon ' + this.$attrs.card.horizon.name);
                 return null;
             }
         },
@@ -86,14 +83,18 @@ export default {
         async fetchWorkloadPeriodically() {
             const fetch = await this.fetchWorkload();
 
-            console.log('response ', fetch);
             if (Array.isArray(fetch)) {
                 if (fetch.length > 0) {
                     this.workload = fetch;
                 }
             }
+
             // Something went wrong
             if (fetch === null) {
+                if (this.timeout) {
+                    clearTimeout(this.timeout);
+                }
+
                 this.timeout = null;
                 return;
             }

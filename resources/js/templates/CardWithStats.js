@@ -20,7 +20,7 @@ export default {
      * Mounted.
      */
     mounted() {
-        this.fetchStatsPeriodically(this.$attrs.card.horizon.url);
+        this.fetchStatsPeriodically(this.horizonType());
     },
 
     /**
@@ -45,12 +45,13 @@ export default {
         /**
          * Fetch stats from horizon.
          */
-        async fetchStats() {
+        async fetchStats(type) {
             try {
                 const response = await prepareHorizonRequest(this.$attrs.card.horizon, 'api/stats');
 
                 return response.data;
             } catch (error) {
+                Nova.error('request error when loading '+type+': horizon ' + this.$attrs.card.horizon.name);
                 return null;
             }
 
@@ -59,8 +60,8 @@ export default {
         /**
          * Fetch stats periodically with Promise and timeout.
          */
-        async fetchStatsPeriodically() {
-            const fetch = await this.fetchStats();
+        async fetchStatsPeriodically(type) {
+            const fetch = await this.fetchStats(type);
 
             if (fetch === null) {
                 this.timeout = null;
@@ -75,7 +76,7 @@ export default {
             }
 
             this.timeout = setTimeout(() => {
-                this.fetchStatsPeriodically();
+                this.fetchStatsPeriodically(type);
             }, 10000);
         },
 

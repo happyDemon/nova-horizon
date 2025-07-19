@@ -15,5 +15,11 @@ import CardWithStats from '../../templates/CardWithStats';
 
 export default {
     extends: CardWithStats,
+
+    methods: {
+        horizonType() {
+            return 'max runtime';
+        }
+    }
 }
 </script>

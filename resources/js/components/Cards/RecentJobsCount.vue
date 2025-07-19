@@ -24,6 +24,12 @@ export default {
                 ? `Past ${this.determinePeriod(this.stats.periods.recentJobs)}`
                 : 'Past hour';
         },
+    },
+
+    methods: {
+        horizonType() {
+            return 'recent jobs count';
+        }
     }
 }
 </script>

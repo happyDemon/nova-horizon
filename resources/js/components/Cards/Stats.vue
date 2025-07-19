@@ -122,6 +122,12 @@ export default {
                 ? `Past ${this.determinePeriod(this.stats.periods.failedJobs)}`
                 : 'Past 7 days';
         },
+    },
+
+    methods: {
+        horizonType() {
+            return 'stats';
+        }
     }
 }
 </script>

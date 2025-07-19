@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function prepareHorizonRequest(horizonConfig, endpoint, options = {}) {
     if (typeof horizonConfig.auth === 'object') {
         options.auth = horizonConfig.auth;
@@ -7,8 +9,7 @@ export function prepareHorizonRequest(horizonConfig, endpoint, options = {}) {
         options.headers = {...options.headers, ...horizonConfig.headers};
     }
 
-    return Nova.request()
-        .get(horizonConfig.url + '/' + endpoint, options);
+    return axios.get(horizonConfig.url + '/' + endpoint, options);
 }
 
 export function prepareHorizonPostRequest(horizonConfig, endpoint, options = {}) {
@@ -20,6 +21,5 @@ export function prepareHorizonPostRequest(horizonConfig, endpoint, options = {})
         options.headers = options.headers || {};
         options.headers = {...options.headers, ...horizonConfig.headers};
     }
-    return Nova.request()
-        .post(horizonConfig.url + '/' + endpoint, options);
+    return axios.post(horizonConfig.url + '/' + endpoint, options);
 }

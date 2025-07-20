@@ -32,7 +32,8 @@ You will have to define your horizon instances in the `nova-horizon.php` config 
 
      'instances' => [
          'default' => [
-             'url' => '',
+             // url to where horizon is accessible
+             'url' => 'https://yourapp.com/horizon',
              'auth' => [
                 // Delete this section if not using basic auth to autheticate horizon requests
              ],
